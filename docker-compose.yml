@@ -7,7 +7,7 @@ services:
       - "8000:80" #iz dokera v real port
     volumes:
       - ./.dockerfiles/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro # iz kakoi papki v ubuntu sozdat fail s nastroikoi
-      - ./web:/var/www/ggbox # iz kakoi papki mi budem 4itat nawe prilozhenie laravel (v etom slu4ae iz kornja)
+      - ./web:/var/www/app # iz kakoi papki mi budem 4itat nawe prilozhenie laravel (v etom slu4ae iz kornja)
     depends_on:
       - mysql
       - php
@@ -16,7 +16,7 @@ services:
       context: .dockerfiles/php # papka gde iskat config dlja ustanovki php v container
       dockerfile: php.Dockerfile # nazvanie faila
     volumes:
-      - ./web:/var/www/ggbox
+      - ./web:/var/www/app
   mysql: # eto zhe nazvanie budet ispolzovatsa v .env (laravel) dla hosta mysql
     image: mysql:8.0
     ports:
@@ -30,9 +30,9 @@ services:
       context: ./.dockerfiles/php
       dockerfile: php.Dockerfile
     volumes:
-      - ./web:/var/www/ggbox
+      - ./web:/var/www/app
     #iz za togo 4to mi ne sozdali noviy fail, ispolzuem php.Dockerfile s entrypoint kotoriy obratitsa k php i vizovit artisan
-    entrypoint: ["php", "/var/www/ggbox/artisan"]
+    entrypoint: ["php", "/var/www/app/artisan"]
   redis:
     image: "redis:latest"
     ports:
@@ -47,7 +47,7 @@ services:
     ports: 
       - "5173:3000"
     volumes:
-      - ./web/:/var/www/ggbox
+      - ./web/:/var/www/app
 
 volumes:
   mysql_data:
