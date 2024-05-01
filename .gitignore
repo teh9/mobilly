@@ -1,0 +1,4 @@
+/redis-data
+composer.lock
+package-lock.json
+/mysql-data
