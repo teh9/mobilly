@@ -4,20 +4,20 @@ services:
   nginx:
     image: "nginx:stable-alpine"
     ports:
-      - "8000:80" #iz dokera v real port
+      - "8000:80"
     volumes:
-      - ./.dockerfiles/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro # iz kakoi papki v ubuntu sozdat fail s nastroikoi
-      - ./web:/var/www/app # iz kakoi papki mi budem 4itat nawe prilozhenie laravel (v etom slu4ae iz kornja)
+      - ./.dockerfiles/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./web:/var/www/app
     depends_on:
       - mysql
       - php
   php:
     build:
-      context: .dockerfiles/php # papka gde iskat config dlja ustanovki php v container
-      dockerfile: php.Dockerfile # nazvanie faila
+      context: .dockerfiles/php
+      dockerfile: php.Dockerfile
     volumes:
       - ./web:/var/www/app
-  mysql: # eto zhe nazvanie budet ispolzovatsa v .env (laravel) dla hosta mysql
+  mysql:
     image: mysql:8.0
     ports:
       - "3316:3306"
@@ -31,7 +31,6 @@ services:
       dockerfile: php.Dockerfile
     volumes:
       - ./web:/var/www/app
-    #iz za togo 4to mi ne sozdali noviy fail, ispolzuem php.Dockerfile s entrypoint kotoriy obratitsa k php i vizovit artisan
     entrypoint: ["php", "/var/www/app/artisan"]
   redis:
     image: "redis:latest"
