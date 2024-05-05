@@ -1,6 +1,5 @@
 FROM php:8.3-fpm-alpine
 
-# to 4to v docker_compose.yaml
 WORKDIR /var/www/app 
 
 RUN docker-php-ext-install pdo pdo_mysql
