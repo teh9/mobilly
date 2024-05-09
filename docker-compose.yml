@@ -8,8 +8,6 @@ services:
     volumes:
       - ./.dockerfiles/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./web:/var/www/app
-      - ./nginx_logs/access.log:/var/log/nginx/access.log
-      - ./nginx_logs/error.log:/var/log/nginx/error.log
     depends_on:
       - mysql
       - php
@@ -19,12 +17,6 @@ services:
       dockerfile: php.Dockerfile
     volumes:
       - ./web:/var/www/app
-    command: >
-      sh -c "composer install &&
-      cp .env.example .env &&
-      php artisan key:generate &&
-      php artisan migrate &&
-      php artisan db:seed"
   mysql:
     image: mysql:8.0
     ports:
