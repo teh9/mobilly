@@ -1,3 +1,9 @@
+## How to use:
+1. git clone
+2. docker-compose up -d
+3. http://localhost:8000/api/stations
+4. In php container > php artisan tests
+
 # Homework
 
 Create web service with REST API which provide info about wether stations in Latvia.
@@ -16,3 +22,4 @@ Requirements:
 7. Use data from open data source: https://data.gov.lv/dati/lv/dataset/hidrometeorologiskie-noverojumi/resource/c32c7afd-0d05-44fd-8b24-1de85b4bf11d;
 8. Commit each step;
 9. Provide result as GitHub repository.
+

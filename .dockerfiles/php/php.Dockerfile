@@ -39,3 +39,7 @@ RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-set
         && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
         && php composer-setup.php && rm composer-setup.php* \
         && chmod +x composer.phar && mv composer.phar /usr/bin/composer
+
+RUN chown -R www-data:www-data /var/www/app
+
+CMD cp .env.example .env && composer install && php artisan key:generate && php artisan migrate && php-fpm
