@@ -42,5 +42,6 @@ class Kernel extends HttpKernel
      */
     protected $middlewareAliases = [
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'api.bearer' => \App\Modules\Wether\Middleware\WetherApiBearerMiddleware::class,
     ];
 }

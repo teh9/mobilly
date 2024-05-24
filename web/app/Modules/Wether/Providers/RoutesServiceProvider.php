@@ -17,7 +17,7 @@ class RoutesServiceProvider extends RouteServiceProvider
                 return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
             });
 
-            Route::prefix('api')->group( function() {
+            Route::middleware('api.bearer')->prefix('api')->group( function() {
                 Route::get('stations', [\App\Modules\Wether\Http\Controllers\StationsController::class, 'index']);
                 Route::get('stations/{id}', [\App\Modules\Wether\Http\Controllers\StationsController::class, 'show']);
             });
