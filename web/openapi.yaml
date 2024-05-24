@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Wether Stations API
+  version: 1.0.0
+paths:
+  /api/stations:
+    get:
+      summary: Get all stations
+      responses:
+        '200':
+          description: A list of stations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    station_id:
+                      type: string
+                    name:
+                      type: string
+      security:
+        - bearerAuth: []
+  /api/stations/{id}:
+    get:
+      summary: Get station by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Station details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  station_id:
+                    type: string
+                  name:
+                    type: string
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: STRING
