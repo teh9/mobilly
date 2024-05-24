@@ -2,10 +2,13 @@
 
 namespace App\Modules\Wether\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Stations extends Model
 {
+    use HasFactory;
+
     public $timestamps = false;
 
     protected $fillable = [
