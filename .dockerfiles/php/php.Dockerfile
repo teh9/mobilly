@@ -42,4 +42,4 @@ RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-set
 
 RUN chown -R www-data:www-data /var/www/app
 
-CMD cp .env.example .env && composer install && php artisan key:generate && php artisan migrate && php-fpm
+CMD cp .env.example .env && composer install && php artisan key:generate && php artisan migrate && php artisan db:seed && php-fpm
