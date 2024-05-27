@@ -39,10 +39,44 @@ paths:
               schema:
                 type: object
                 properties:
+                  id:
+                    type: integer
                   station_id:
                     type: string
                   name:
                     type: string
+                  wmo_id:
+                    type: integer
+                  begin_date:
+                    type: string
+                    format: date-time
+                  end_date:
+                    type: string
+                    format: date-time
+                  latitude:
+                    type: number
+                    format: float
+                  longitude:
+                    type: number
+                    format: float
+                  gauss1:
+                    type: number
+                    format: float
+                  gauss2:
+                    type: number
+                    format: float
+                  geogr1:
+                    type: number
+                    format: float
+                  geogr2:
+                    type: number
+                    format: float
+                  elevation:
+                    type: number
+                    format: float
+                  elevation_pressure:
+                    type: number
+                    format: float
       security:
         - bearerAuth: []
 components:
